@@ -10,7 +10,9 @@
     "eject": "expo eject",
     "test": "jest --watchAll",
     "storybook": "start-storybook -p 7007",
-    "build-storybook": "build-storybook"
+    "build-storybook:web": "expo build:web",
+    "build-storybook:ios": "expo build:ios",
+    "build-storybook:android": "expo build:android"
   },
   "jest": {
     "preset": "jest-expo"
