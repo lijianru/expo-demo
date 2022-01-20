@@ -14,6 +14,9 @@ import {
   Text,
   ThemeProvider,
   useTheme,
+  BottomSheet,
+  ListItem,
+  Overlay,
 } from 'react-native-elements';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { customerTheme } from './customerTheme';
@@ -24,6 +27,10 @@ function App() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [check1, setCheck1] = useState(false);
   const [index, setIndex] = React.useState(0);
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const [bottomSheetVisible2, setBottomSheetVisible2] = useState(false);
+  const [overlayVisible, setOverlayVisible] = useState(false);
+  const [overlayVisible2, setOverlayVisible2] = useState(false);
 
   const users = [
     {
@@ -37,11 +44,84 @@ function App() {
     },
   ];
 
+  const bottomSheetList = [
+    { title: 'bottomSheet 1' },
+    { title: 'bottomSheet 1' },
+    {
+      title: 'Open bottomSheet 2',
+      containerStyle: { backgroundColor: 'red' },
+      titleStyle: { color: 'white' },
+      onPress: () => {
+        setBottomSheetVisible(false);
+        setBottomSheetVisible2(true);
+      },
+    },
+  ];
+
+  const bottomSheetList2 = [
+    { title: 'bottomSheet 2' },
+    { title: 'bottomSheet 2' },
+    {
+      title: 'open bottomSheet 1',
+      containerStyle: { backgroundColor: 'red' },
+      titleStyle: { color: 'white' },
+      onPress: () => {
+        setBottomSheetVisible2(false);
+        setBottomSheetVisible(true);
+      },
+    },
+  ];
+
   return (
     <ThemeProvider theme={customerTheme}>
       <SafeAreaProvider style={{ marginTop: 50, marginBottom: 50 }}>
         <ScrollView>
-          <Button title={'Click'} />
+          <Button title={'Open BottomSheet 1'} onPress={() => setBottomSheetVisible(true)} />
+          <BottomSheet modalProps={{}} isVisible={bottomSheetVisible2}>
+            {bottomSheetList2.map((l, i) => (
+              <ListItem key={i} containerStyle={l.containerStyle} onPress={l.onPress}>
+                <ListItem.Content>
+                  <ListItem.Title style={l.titleStyle}>{l.title}</ListItem.Title>
+                </ListItem.Content>
+              </ListItem>
+            ))}
+          </BottomSheet>
+          <BottomSheet modalProps={{}} isVisible={bottomSheetVisible}>
+            {bottomSheetList.map((l, i) => (
+              <ListItem key={i} containerStyle={l.containerStyle} onPress={l.onPress}>
+                <ListItem.Content>
+                  <ListItem.Title style={l.titleStyle}>{l.title}</ListItem.Title>
+                </ListItem.Content>
+              </ListItem>
+            ))}
+          </BottomSheet>
+
+          <Button title={'Open Overlay 1'} onPress={() => setOverlayVisible(true)} />
+          <Overlay isVisible={overlayVisible}>
+            <Text>Overlay 1</Text>
+            <Text>Overlay 1</Text>
+            <Button
+              title={'Open Overlay 2'}
+              onPress={() => {
+                setOverlayVisible(false);
+                setOverlayVisible2(true);
+              }}
+            />
+          </Overlay>
+          <Overlay isVisible={overlayVisible2}>
+            <Text>Overlay 2</Text>
+            <Text>Overlay 2</Text>
+            <Text>Overlay 2</Text>
+            <Text>Overlay 2</Text>
+            <Text>Overlay 2</Text>
+            <Button
+              title={'Open Overlay 1'}
+              onPress={() => {
+                setOverlayVisible2(false);
+                setOverlayVisible(true);
+              }}
+            />
+          </Overlay>
 
           <ButtonGroup
             buttons={['SIMPLE', 'BUTTON', 'GROUP']}
