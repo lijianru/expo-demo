@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, TextField, Text, Button, Colors, ThemeManager } from 'react-native-ui-lib';
+import React, { useState } from 'react';
+import { View, TextField, Text, Button, Colors, ThemeManager, Dialog } from 'react-native-ui-lib';
 
 Colors.loadColors({
   pink: 'green',
@@ -14,6 +14,9 @@ ThemeManager.setComponentTheme('Button', (props: any) => {
 });
 
 function App() {
+  const [visible, setVisible] = useState(false);
+  const [visible2, setVisible2] = useState(false);
+
   return (
     <View flex paddingH-25 paddingT-120>
       <Text pink text20>
@@ -25,6 +28,45 @@ function App() {
         <Button text70 white background-orange30 label="Login" />
         <Button link text70 orange30 label="Sign Up" marginT-20 />
       </View>
+      <Button
+        text70
+        white
+        background-orange30
+        label="Show Modal 1"
+        onPress={() => setVisible(true)}
+      />
+      <Dialog visible={visible}>
+        <View background-withe>
+          <Text pink text20>
+            Welcome modal 1
+          </Text>
+          <Button
+            link
+            text70
+            orange30
+            label="Open Modal 2"
+            onPress={() => {
+              setVisible(false);
+              setVisible2(true);
+            }}
+          />
+        </View>
+      </Dialog>
+      <Dialog visible={visible2}>
+        <Text pink text20>
+          Welcome modal 2
+        </Text>
+        <Button
+          link
+          text70
+          orange30
+          label="Open Modal 1"
+          onPress={() => {
+            setVisible2(false);
+            setVisible(true);
+          }}
+        />
+      </Dialog>
     </View>
   );
 }
