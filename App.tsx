@@ -22,13 +22,14 @@ import { theme } from './customerTheme';
 function App() {
   const [service, setService] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
 
   return (
     <NativeBaseProvider theme={theme}>
       <SafeAreaProvider style={{ marginTop: 50, marginBottom: 50 }}>
         <ScrollView>
           <Box m="2">
-            <Button onPress={() => {}} _stack={{ margin: 100 }}>
+            <Button onPress={() => {}} _stack={{ margin: 2 }}>
               Click
             </Button>
           </Box>
@@ -87,19 +88,9 @@ function App() {
           <Box m="2">
             <Progress value={45} max={100} />
           </Box>
-          <Box m="2">
-            <Heading size="xs">xs</Heading>
-            <Heading size="sm">sm</Heading>
-            <Heading size="md">md</Heading>
-            <Heading size="lg">lg</Heading>
-            <Heading size="xl">xl</Heading>
-            <Heading size="2xl">2xl</Heading>
-            <Heading size="3xl">3xl</Heading>
-            <Heading size="4xl">4xl</Heading>
-          </Box>
 
           <Box m="2">
-            <Button onPress={() => setShowModal(true)}>Button</Button>
+            <Button onPress={() => setShowModal(true)}>Show Modal 1</Button>
             <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
               <Modal.Content maxWidth="400px">
                 <Modal.CloseButton />
@@ -128,9 +119,47 @@ function App() {
                     <Button
                       onPress={() => {
                         setShowModal(false);
+                        setShowModal2(true);
                       }}
                     >
-                      Save
+                      Open Modal 2
+                    </Button>
+                  </Button.Group>
+                </Modal.Footer>
+              </Modal.Content>
+            </Modal>
+            <Modal isOpen={showModal2} onClose={() => setShowModal2(false)}>
+              <Modal.Content maxWidth="400px">
+                <Modal.CloseButton />
+                <Modal.Header>Contact Us 2</Modal.Header>
+                <Modal.Body>
+                  <FormControl>
+                    <FormControl.Label>Name 2</FormControl.Label>
+                    <Input />
+                  </FormControl>
+                  <FormControl mt="3">
+                    <FormControl.Label>Email 2</FormControl.Label>
+                    <Input />
+                  </FormControl>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button.Group space={2}>
+                    <Button
+                      variant="ghost"
+                      colorScheme="blueGray"
+                      onPress={() => {
+                        setShowModal2(false);
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      onPress={() => {
+                        setShowModal2(false);
+                        setShowModal(true);
+                      }}
+                    >
+                      Open Modal 1
                     </Button>
                   </Button.Group>
                 </Modal.Footer>
