@@ -1,35 +1,25 @@
 import { extendTheme } from 'native-base';
 
-export const theme = extendTheme({
-  colors: {
-    primary: {
-      50: '#E3F2F9',
-      100: '#C5E4F3',
-      200: '#A2D4EC',
-      300: '#7AC1E4',
-      400: '#47A9DA',
-      500: '#0088CC',
-      600: '#007AB8',
-      700: '#006BA1',
-      800: '#005885',
-      900: '#003F5E',
-    },
-    amber: {
-      400: '#d97706',
-    },
+const colors = {
+  primary: {
+    50: '#e2efff',
+    100: '#b3d0ff',
+    200: '#85b1fa',
+    300: '#5592f6',
+    400: '#2873f3',
+    500: '#1159d9',
+    600: '#0945aa',
+    700: '#02327a',
+    800: '#001e4c',
+    900: '#000a1e',
   },
+};
+
+export const theme = extendTheme({
+  colors,
   config: {
     // Changing initialColorMode to 'dark'
     initialColorMode: 'dark',
   },
-  components: {
-    Button: {
-      baseStyle: {
-        rounded: 'md',
-      },
-      defaultProps: {
-        colorScheme: 'red',
-      },
-    },
-  },
+  components: {},
 });

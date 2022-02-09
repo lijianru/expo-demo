@@ -16,6 +16,7 @@ import {
   Input,
   Modal,
   ScrollView,
+  Center,
 } from 'native-base';
 import { theme } from './customerTheme';
 
@@ -28,6 +29,18 @@ function App() {
     <NativeBaseProvider theme={theme}>
       <SafeAreaProvider style={{ marginTop: 50, marginBottom: 50 }}>
         <ScrollView>
+          <Center
+            bg="emerald.400"
+            _text={{
+              color: 'white',
+            }}
+            rounded="xl"
+            w={[100, 200, 300, 400, 500]}
+            h={24}
+          >
+            This is a box
+          </Center>
+
           <Box m="2">
             <Button onPress={() => {}} _stack={{ margin: 2 }}>
               Click
