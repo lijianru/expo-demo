@@ -6,6 +6,7 @@ import { Text } from 'react-native';
 import Button from '.';
 import CenterView from '../CenterView';
 
+// eslint-disable-next-line no-undef
 storiesOf('Button', module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   .add('with text', () => (
