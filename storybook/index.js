@@ -12,11 +12,13 @@ addDecorator(withKnobs);
 // import stories
 configure(() => {
   require('./stories');
+  // eslint-disable-next-line no-undef
 }, module);
 
 // Refer to https://github.com/storybookjs/storybook/tree/master/app/react-native#start-command-parameters
 // To find allowed options for getStorybookUI
 const StorybookUIRoot = getStorybookUI({
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   asyncStorage: require('@react-native-async-storage/async-storage').default,
 });
 
